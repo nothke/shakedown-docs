@@ -1,5 +1,7 @@
 Welcome to the documentation for [Shakedown Rally](https://nothke.itch.io/shakedown)!
 
+If you encountered a bug, [submit an issue here](https://github.com/nothke/shakedown-docs/issues).
+
 ### Changelog
 #### Build 849 (version 2)
 * Initial release
