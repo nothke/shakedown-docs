@@ -2,6 +2,19 @@ Welcome to the documentation for [Shakedown Rally](https://nothke.itch.io/shaked
 
 If you encountered a bug, [submit an issue here](https://github.com/nothke/shakedown-docs/issues).
 
+### Rebinding controls
+
+You can set your own controls in config.ini [bindings] segment. Keys map to numbers that you can find on [this page](https://www.glfw.org/docs/3.3/group__keys.html). For example, to map throttle, break and steering to arrows:
+
+```
+steerLeft = 263
+steerRight = 262
+throttle = 265
+brake = 264
+```
+
+<sup>(thx to [Henke](https://itch.io/t/2612242/psa-rebinding-controls))</sup> 
+
 ### Changelog
 #### Build 849 (version 2)
 * Initial release
