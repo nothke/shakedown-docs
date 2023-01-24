@@ -27,6 +27,8 @@ brake = 264
 
 My goal for the game is to make modding as easy as possible, BUT it is not yet officially mod "friendly". It doesn't even have track or car picking, nor good error messages if you do something wrong. Nothing stops you from changing the car parameters or asset files right now as they're "out in the open" but as I am still changing everything I advise you to wait a bit as I will make your life easier.
 
+See [Modding](modding.md) for preliminary modding tips.
+
 ### Changelog
 #### Build 849 (version 2)
 * Initial release
