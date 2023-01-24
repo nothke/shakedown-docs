@@ -49,12 +49,10 @@ There are some special tags you can put in your object names (they are case sens
 - `nocol` or `tree` will not make a collider
 - objects starting with `chk_` and ending in `.001`, `.002`, `.003` etc. are checkpoints (splits). They must be in order with no interruptions. They will use a box collider (as if they had a `boxcol` tag), so to be valid they should not be 0-thin in either dimension. The finish line is the last checkpoint.
 
+If none of these tags are found, an object will be static and will have a mesh collider.
+
 #### Special objects
 - `suncube` is used for pointing the sun towards its -Z axis (opposite from blue arrow blender gizmo) that car uses for shadowing itself. If none is found, the game will point the sun top-down.
 
-If none of these tags are found, an object will be static and will have a mesh collider.
-
-Prefer using box colldiers for small objects that don't need precise collision. In Monty stage those are for example chairs and tables, as mesh colliders would be too dense and unnecessarily slow down the game.
-
-
-
+#### Tips
+* Prefer using box colldiers for small objects that don't need precise collision. In Monty stage those are for example chairs and tables, as mesh colliders would be too dense and unnecessarily slow down the game.

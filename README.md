@@ -36,7 +36,7 @@ See [Modding](modding.md) for preliminary modding tips.
 * Initial release
 #### Build 869 (version 3)
 * Fixed neutral gear which caused crashes due to division by zero
-* *HUD can now be toggled (default: tab)
+* HUD can now be toggled (default: tab)
 * Camera movement is now bindable and defaults are numpad arrows
 * Camera FoV can now be changed in any camera mode (using + and - by default)
 * Auto shifting no longer upshifts from reverse
