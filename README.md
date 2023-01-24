@@ -12,6 +12,7 @@ Join [my discord server](https://discord.com/invite/R8jXeTg) to discuss about th
 
 Switch through the cameras (with C by default) until the camera stops moving -> this is actually the free look camera! Now you can hold right click to look around and move the camera around (with numpad keys by default). Sorry that it isn't that clear, I will add some in-game tooltips in the future.
 
+
 ### Rebinding controls
 
 You can set your own controls in config.ini [bindings] segment. Keys map to numbers that you can find on [this page](https://www.glfw.org/docs/3.3/group__keys.html). For example, to map throttle, break and steering to arrows:
@@ -30,6 +31,12 @@ brake = 264
 My goal for the game is to make modding as easy as possible, BUT it is not yet officially mod "friendly". It doesn't even have track or car picking, nor good error messages if you do something wrong. Nothing stops you from changing the car parameters or asset files right now as they're "out in the open" but as I am still changing everything I advise you to wait a bit as I will make your life easier.
 
 See [Modding](modding.md) for preliminary modding tips.
+
+### Known issues
+* Trees have no collisions
+* If the game stutters on laptops, make sure you play the game with your dedicated GPU as many times laptops will default to integrated GPU. You can set that in Windows "Graphics Settings"
+* If the game looks blurry and you have a high-dpi screen, the OS might override the application setting. Right click on the exe -> Compatibility -> Change High DPI settings -> check "Override high DPI scaling behavior" and select Application from the drop down
+* There are some known issues with Windows 7, please submit an issue with a log file if you are using one and have problems
 
 ### Changelog
 #### Build 849 (version 2)
