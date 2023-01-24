@@ -2,6 +2,14 @@ Welcome to the documentation for [Shakedown Rally](https://nothke.itch.io/shaked
 
 If you encountered a bug, [submit an issue here](https://github.com/nothke/shakedown-docs/issues).
 
+Join [my discord server](https://discord.com/invite/R8jXeTg) to discuss about the game and get the latest updates.
+
+### FAQ
+
+#### How do I fly the camera around freely?
+
+Switch through the cameras (with C by default) until the camera stops moving -> this is actually the free look camera! Now you can hold right click to look around and move the camera around (with numpad keys by default). Sorry that it isn't that clear, I will add some in-game tooltips in the future.
+
 ### Rebinding controls
 
 You can set your own controls in config.ini [bindings] segment. Keys map to numbers that you can find on [this page](https://www.glfw.org/docs/3.3/group__keys.html). For example, to map throttle, break and steering to arrows:
@@ -14,6 +22,10 @@ brake = 264
 ```
 
 <sup>(thx to [Henke](https://itch.io/t/2612242/psa-rebinding-controls))</sup> 
+
+### Modding support
+
+My goal for the game is to make modding as easy as possible, BUT it is not yet officially mod "friendly". It doesn't even have track or car picking, nor good error messages if you do something wrong. Nothing stops you from changing the car parameters or asset files right now as they're "out in the open" but as I am still changing everything I advise you to wait a bit as I will make your life easier.
 
 ### Changelog
 #### Build 849 (version 2)
