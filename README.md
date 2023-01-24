@@ -52,3 +52,9 @@ See [Modding](modding.md) for preliminary modding tips.
 #### Build 879 (version 5)
 * Logger now flushes on warnings by default so that log.txt gets filled before crashes. Custom flush level can be set in config flushOnLevel, increasing the number lowers the threshold level needed for flush
 * Added Windows version info to log
+#### Build 902 (version 6)
+* Reverse lights now work
+* Onboard camera position can now be set in config
+* Wheel radius is no longer hardcorded and can be set in config
+* Added suspension debug lines
+* Fog parameters are now in [fog] section in config
