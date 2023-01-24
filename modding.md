@@ -40,7 +40,7 @@ All object's scale MUST have unit scale (meaning the scale must be 1, 1, 1), oth
 
 #### Surfaces
 
-There are currently 2 surfaces: tarmac and dirt. Any object primitives (submeshes) that have materials with `tarmac` or `road` will use tarmac surface, and everything else will use dirt.
+There are currently 2 physical surfaces: tarmac and dirt. Any object primitives (submeshes) that have materials with `tarmac` or `road` in their names will use tarmac surface, and everything else will use dirt.
 
 #### Object tags
 
