@@ -1,3 +1,5 @@
+![logo](https://img.itch.zone/aW1nLzExMTA1NzU3LnBuZw==/original/bqf3kG.png)
+
 Welcome to the documentation for [Shakedown Rally](https://nothke.itch.io/shakedown)!
 
 If you encountered a bug, [submit an issue here](https://github.com/nothke/shakedown-docs/issues).
