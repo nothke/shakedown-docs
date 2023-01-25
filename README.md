@@ -16,6 +16,22 @@ You need to shift down through gears (`<` by default) until you reach reverse ge
 
 Switch through the cameras (with C by default) until the camera stops moving -> this is actually the free look camera! Now you can hold right click to look around and move the camera around (with numpad keys by default). Sorry that it isn't that clear, I will add some in-game tooltips in the future.
 
+### Default controls
+
+- `W`, `S`, `A`, `D` - Throttle, Brake and Steer
+- `Shift` - Clutch (not needed when changing gears)
+- `Enter` - Toggle between auto and manual gear shifting
+- `<`, `>` - switch gears
+- `N` - Set to neutral gear
+- `F` - Unflips the car and adds 10 seconds
+- `C` - Switch camera
+- `Esc` - Restart stage
+- `tab` - Toggle HUD
+- `Ctrl` - Toggle mouse lock
+- `Numpad +` - Decrease FoV (zoom in)
+- `Numpad -` - Increase FoV (zoom out)
+- `Numpad 8`, `Numpad 5`, `Numpad 4`, `Numpad 6` - Move camera forward, back, left, right
+- `~` - Toggle dev GUI 
 
 ### Rebinding controls
 
