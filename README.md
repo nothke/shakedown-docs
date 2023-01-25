@@ -8,6 +8,10 @@ Join [my discord server](https://discord.com/invite/R8jXeTg) to discuss about th
 
 ### FAQ
 
+#### How do I reverse?
+
+You need to shift down through gears (`<` by default) until you reach reverse gear. Will add holding brake to reverse at some point.
+
 #### How do I fly the camera around freely?
 
 Switch through the cameras (with C by default) until the camera stops moving -> this is actually the free look camera! Now you can hold right click to look around and move the camera around (with numpad keys by default). Sorry that it isn't that clear, I will add some in-game tooltips in the future.
