@@ -23,6 +23,10 @@ Right now, only one car is loaded and hardcoded to `spec17.gltf`, open it to see
 * `spec17_wheel` - used for all wheels
 * `spec17_reverselights`, `spec17_brakelights` - glow as brakes/reverse lights
 
+All of these objects must have a single material each. Otherwise the game will just pick one submesh (mesh with one material slot) and keep the others in the middle of track.
+
+The pivot of body object must be exactly in the center of wheelbase and track (in the middle of all wheels). This is because the game uses just a single value for wheelBase and wheelTrack. It will place wheels at 0.5 * wheelBase back for rear wheels and same for front wheels.
+
 ### Stage
 
 Object MUST have a single layer of vertex color, which is used for baked ambient light (shadow + GI). The vertex color is multiplied with texture. If an object does not have a layer it will be rendered black.
