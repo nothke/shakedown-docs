@@ -51,7 +51,7 @@ There are currently 2 physical surfaces: tarmac and dirt. Any object primitives 
 There are some special tags you can put in your object names (they are case sensitive):
 - `colbox` will create a box collider with the size of the object's bounding box
 - `nocol` or `tree` will not make a collider
-- objects starting with `chk_` and ending in `.001`, `.002`, `.003` etc. are checkpoints (splits). They must be in order with no interruptions. They will use a box collider (as if they had a `boxcol` tag), so to be valid they should not be 0-thin in either dimension. The finish line is the last checkpoint.
+- objects starting with `chk_` and ending in `.001`, `.002`, `.003` etc. are checkpoints (splits). They must be in order with no interruptions. They will use a box collider (as if they had a `colbox` tag), so to be valid they should not be 0-thin in either dimension. The finish line is the last checkpoint.
 
 If none of these tags are found, an object will be static and will have a mesh collider.
 
