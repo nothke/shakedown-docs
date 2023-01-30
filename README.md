@@ -78,3 +78,17 @@ See [Modding](modding.md) for preliminary modding tips.
 * Wheel radius is no longer hardcorded and can be set in config
 * Added suspension debug lines
 * Fog parameters are now in [fog] section in config
+#### Build 1068 (version 7)
+- Reduced body collision friction from 1x to 0.7x to reduce chance of car flying when hitting small bumps and slowing down when bottoming out. Can now be set in config.
+- Automatic shader reloading on window refocus is no longer enabled by default (can be turned on in config: `hotReloadShaders = 1`)
+- Ambient light color, fog color and shadow color are now exposed in config
+- Engine can now load meshes with 32bit indices (instead of previously only 16bit), which removes the mesh triangle limit
+- Basic setup for splat (mixed) materials, but they are a bit broken so not in use yet
+#### Build 1068 (asset changes only) (version 8)
+- Monty track update:
+  - Patched all holes visible from the stage
+  - Added 2 new retaining walls in the serpentine section to make it more clear where is the edge
+  - Flattened sides of the big tunnel entry a bit
+  - Fixed lighting of birches at the last hairpin
+  - Grounded some trees that were floating
+- Shader cleanup (no visible differences)

@@ -8,6 +8,8 @@ My goal for the game is to make modding as easy as possible, BUT it is not yet o
 
 The game loads gltf/glb files with embedded textures. Only gltf exporter in blender version 3.3 is supported. There seems to be an issue with newer versions of blender, the vertex colors are messed up.
 
+For the object to be valid, it needs to have a material and the material needs to have a texture assigned as a color map.
+
 ### glb vs gltf
 
 Both are supported just fine, but:
@@ -26,6 +28,8 @@ Right now, only one car is loaded and hardcoded to `spec17.gltf`, open it to see
 All of these objects must have a single material each. Otherwise the game will just pick one submesh (mesh with one material slot) and keep the others in the middle of track.
 
 The pivot of body object must be exactly in the center of wheelbase and track (in the middle of all wheels). This is because the game uses just a single value for wheelBase and wheelTrack. It will place wheels at 0.5 * wheelBase back for rear wheels and same for front wheels.
+
+Another thing is that the pivot should be inside the convex mesh
 
 ### Stage
 
