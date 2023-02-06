@@ -92,3 +92,17 @@ See [Modding](modding.md) for preliminary modding tips.
   - Fixed lighting of birches at the last hairpin
   - Grounded some trees that were floating
 - Shader cleanup (no visible differences)
+
+#### Build 1258 (version 9)
+- Analogue axis support for gamepads! Setup axes in bindings in config. By default uses Xbox controller setup. To be done:
+  - No gamepad button support yet. 
+  - Deadzone setting does nothing yet.
+- Physics changes: 
+  - Changed steering behavior to support gamepad. Steering is more reactive now. (will be tweaked later)
+  - Default car now has lower and stiffer tarmac-like suspension
+  - Suspension force now dependent on surface normal
+- Default car now has 18 inch tarmac wheels (graphics change only)
+- Added headlights. Toggle on `L` by default.
+- Blended tansparency support. Spec17 car now has windows.
+- Splat materials support. But none in use yet. Hardcorded surface physics for now. Documentation for how to use it coming soon.
+- Added `-cfg "your_path.ini"` to CL args to support loading different configs
