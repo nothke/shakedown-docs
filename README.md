@@ -105,4 +105,5 @@ See [Modding](modding.md) for preliminary modding tips.
 - Added headlights. Toggle on `L` by default.
 - Blended tansparency support. Spec17 car now has windows.
 - Splat materials support. But none in use yet. Hardcorded surface physics for now. Documentation for how to use it coming soon.
+- Changed the smooth follow camera (3rd person). It now has split horizontal and distance constraints, so the camera won't get so far from the car when at high speed and will still be "cool" in the powerslides
 - Added `-cfg "your_path.ini"` to CL args to support loading different configs
