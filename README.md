@@ -107,3 +107,13 @@ See [Modding](modding.md) for preliminary modding tips.
 - Splat materials support. But none in use yet. Hardcorded surface physics for now. Documentation for how to use it coming soon.
 - Changed the smooth follow camera (3rd person). It now has split horizontal and distance constraints, so the camera won't get so far from the car when at high speed and will still be "cool" in the powerslides
 - Added `-cfg "your_path.ini"` to CL args to support loading different configs
+
+#### Build 1276 (version 10)
+- Joypad button support. Mapped to 500+ keys in bindings config
+- Added outputKeyEvents parameter. Set it to 1 in config to ouput keys that you press/release in the console.
+- Analogue axis deadzone settings now work
+- Exposed "smooth follow" camera parameters in config
+- Car's rear lights are now lit up when headlights are on
+- Removed annoying bright white pixels from rear lights on default car
+- Physics: Reduced steering stiffness to be closer to the old steering physics
+- Exposed gravity parameter in config
