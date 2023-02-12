@@ -54,7 +54,7 @@ See [Modding](modding.md) for preliminary modding tips.
 
 ### Known issues
 * Trees have no collisions
-* If you have a joystick connected, it will override keyboard input and steering, throttle and brake on the keyboard will not work.
+* If you have at least one controller connected, it will override keyboard input and steering, throttle and brake on the keyboard will not work.
 * If the game stutters on laptops, make sure you play the game with your dedicated GPU as many times laptops will default to integrated GPU. You can set that in Windows "Graphics Settings"
 * If the game looks blurry and you have a high-dpi screen, the OS might override the application setting. Right click on the exe -> Compatibility -> Change High DPI settings -> check "Override high DPI scaling behavior" and select Application from the drop down
 * There are some known issues with Windows 7, please submit an issue with a log file if you are using one and have problems
