@@ -74,9 +74,13 @@ If none of these tags are found, an object will be static and will have a mesh c
 
 ### Splat Material
 
-A special splat shader which uses the second vertex color layer can be used for [splatting](https://en.wikipedia.org/wiki/Texture_splatting), i.e. blending between 4 different textures. Materials that use splat must contain the `splat:SPLATNAME` tag where `SPLATNAME` is your custom identifier. 
+A special splat shader which uses the second vertex color layer can be used for [splatting](https://en.wikipedia.org/wiki/Texture_splatting), i.e. blending between 4 different textures. Materials that use splat must contain the `splat:SPLATNAME` tag where `SPLATNAME` is your custom identifier.
+
+![Object with a splat material and its vertex color](media/splat_material.png)
 
 Since Blender's gltf exporter cannot out-of-the-box export references to 4 textures in a single material, there needs to exist a proxy object that will "tell" the game which textures to use for which channel for a particular splat material. This source object needs to be named in the form of `splatsrc:SPLATNAME`, where `SPLATNAME` is the same identifier you used in the splat material.
+
+![The splat source object with 4 materials for each channel](media/splat_source.png))
 
 The splat source object now should have up to 4 materials with textures assigned to the albedo. Each of these materials must contain channel tags:
 - `ch:0` is the base, or pure black vertex color will render this texture,
