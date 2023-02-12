@@ -16,7 +16,7 @@ Both are supported just fine, but:
 * Glb files are binary files, they are smaller and load faster, it's recommended to use them for release.
 * gltf are easier to debug as they are text-based json-style files so can be opened in any text editor for inspection.
 
-### Car
+## Car
 
 Right now, only one car is loaded and hardcoded to `spec17.gltf`, open it to see  the objects within. Custom objects must retain the same names as they are loaded by name:
 
@@ -31,24 +31,29 @@ The pivot of body object must be exactly in the center of wheelbase and track (i
 
 Another thing is that the pivot should be inside the convex mesh
 
-### Stage
+## Stage
 
-Object MUST have a single layer of vertex color, which is used for baked ambient light (shadow + GI). The vertex color is multiplied with texture. If an object does not have a layer it will be rendered black.
+Object MUST have at least one layer of vertex color, which is used for baked ambient light (shadow + GI). The vertex color is multiplied with texture. If an object does not have this layer it will be rendered black.
 
-Only 1 texture per material and 1 uv layer is supported.
+Standard (non-splat) materials support only 1 texture per and 1 uv layer per material.
 
 To summarize, valid vertex data is:
 - position - vec3 float
-- color - vec4 unorm short
 - uv - vec2 float
+- color0 - vec3 unorm short or float
+- color1 - vec3 unorm short or float
 
 Any other attributes (like normals) will be discarded.
 
-All object's scale MUST have unit scale (meaning the scale must be 1, 1, 1), otherwise mesh colliders will not work correctly. You can apply scale in blender, by selecting objects then pressing ctrl+A -> Scale.
+Scale of all objects that you wish to have colliders on MUST have unit scale (meaning the scale must be 1, 1, 1), otherwise collisions will not work correctly. You can apply scale in blender, by selecting objects then pressing ctrl+A -> Scale.
 
 #### Surfaces
 
-There are currently 2 physical surfaces: tarmac and dirt. Any object primitives (submeshes) that have materials with `tarmac` or `road` in their names will use tarmac surface, and everything else will use dirt.
+Note: I use the word "surface" to mean a physical surface - how a surface influences the car and game, e.g. ice makes the car slide, tarmac is sealed and very grippy, snow is loose and emits white particles.. Not to be confused with "material" which is graphical property of a mesh, although materials do map to surfaces, but they're not the same thing.
+
+There are currently 2 default-material physical surfaces: tarmac and dirt. Any object primitives (submeshes) that have materials with `tarmac` or `road` (and are not splat) in their names will use tarmac surface, and everything else will use dirt.
+
+Splat materials have a separate surface system that blends between surfaces using vertex colors. See [Splat Material](#Splat-Material).
 
 #### Object tags
 
@@ -63,4 +68,24 @@ If none of these tags are found, an object will be static and will have a mesh c
 - `suncube` is used for pointing the sun towards its -Z axis (opposite from blue arrow blender gizmo) that car uses for shadowing itself. If none is found, the game will point the sun top-down.
 
 #### Tips
-* Prefer using box colldiers for small objects that don't need precise collision. In Monty stage those are for example chairs and tables, as mesh colliders would be too dense and unnecessarily slow down the game.
+* LOOK AT THE CONSOLE! When the game starts, it loads the track and car files. Any import error will output both in the console and in the `log.txt` file. You can alt-tab to the console during gameplay. It's much easier to spot errors in the console because it will shine bright red. But in case of a crash check `log.txt` first (before complaining :P)
+* Prefer using box colldiers for small objects that don't need precise collision. In Monty stage those are for example chairs and tables in the town, as mesh colliders would be too dense and unnecessarily slow down the game.
+* Exporting .png images with alpha in Photoshop will by default treat alpha as transparency. To export alpha properly as a separate channel without ruining RGB channels, use the [SuperPNG extension](http://www.fnordware.com/superpng/). My personal preference for textures is png, but format itself ultimately doesn't matter if you export gltf/glb with jpeg setting on.
+
+### Splat Material
+
+A special splat shader which uses the second vertex color layer can be used for [splatting](https://en.wikipedia.org/wiki/Texture_splatting), i.e. blending between 4 different textures. Materials that use splat must contain the `splat:SPLATNAME` tag where `SPLATNAME` is your custom identifier. 
+
+Since Blender's gltf exporter cannot out-of-the-box export references to 4 textures in a single material, there needs to exist a proxy object that will "tell" the game which textures to use for which channel for a particular splat material. This source object needs to be named in the form of `splatsrc:SPLATNAME`, where `SPLATNAME` is the same identifier you used in the splat material.
+
+The splat source object now should have up to 4 materials with textures assigned to the albedo. Each of these materials must contain channel tags:
+- `ch:0` is the base, or pure black vertex color will render this texture,
+- `ch:r` added by the red vertex color,
+- `ch:g` added to green vertex color, and
+- `ch:b` added to blue vertex color.
+
+Each of the added textures (R, G & B) provided must also have an alpha. The alpha is used as a heightmap. It is VERY IMPORTANT to connect the alpha output of the texture in the shader to alpha of the BSDF, otherwise gltf won't export the alpha channel and you won't see any blending.
+
+Using a `SPLATNAME` (custom identifier) allows you to have multiple different splat materials, for example one for the road, one for terrain.
+
+Surfaces for splat materials are blended by vertex color. All properties are linearily interpolated. Right now the surface properties are hardcorded.
