@@ -1,4 +1,4 @@
-Correct as of build 879
+Correct as of build 1276
 
 # Shakedown Modding
 
@@ -18,7 +18,7 @@ Both are supported just fine, but:
 
 ## Car
 
-Right now, only one car is loaded and hardcoded to `spec17.gltf`, open it to see  the objects within. Custom objects must retain the same names as they are loaded by name:
+Right now, only one car is loaded and hardcoded to `spec17.gltf`. It's easiest to just open it in blender to see the objects within. Custom objects must retain the same names as they are loaded by name:
 
 * `spec17_body` - the rendered body
 * `spec17_hull` - used for convex mesh collider
@@ -29,7 +29,11 @@ All of these objects must have a single material each. Otherwise the game will j
 
 The pivot of body object must be exactly in the center of wheelbase and track (in the middle of all wheels). This is because the game uses just a single value for wheelBase and wheelTrack. It will place wheels at 0.5 * wheelBase back for rear wheels and same for front wheels.
 
-Another thing is that the pivot should be inside the convex mesh
+The pivot is also the center of mass. So, the pivot height should be set to a realistic centre of mass height, and MUST be inside the convex mesh. If the pivot is outside, the car might render black as the pivot is also used for shadow raycasts and they might be hitting the body itself.
+
+Car and wheels should be oriented in blender default reference system (Y should be pointing backwards and Z upwards) and have rotation at zero. In case rotations are not zeroed out, they must be applied (Ctrl+A -> Rotation).
+
+Note that car modding will be greatly improved in future versions, and none of the above limitations might count.
 
 ## Stage
 
