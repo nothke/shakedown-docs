@@ -118,3 +118,26 @@ See [Modding](modding.md) for preliminary modding tips.
 - Removed annoying bright white pixels from rear lights on default car
 - Physics: Reduced steering stiffness to be closer to the old steering physics
 - Exposed gravity parameter in config
+
+#### Build 1591 (version 11/12)
+- Controller presence no longer disables keyboard input. Axes inputs of both now add up and work simultaneously
+- Physics changes:
+  - Drive friction is now applied to the drivetrain not to the whole car
+  - Brakes now exclusively apply friction to the drivetrain (previously there was an extra legacy braking force). Expect much weaker brakes now.
+- Resizing the window in windowed mode now correctly rebuilds the framebuffer (game doesn't get squashed)
+- Headlights are now conical spotlights (instead of spherical blobs), they are much more powerful and add light to environment in a more correct way
+- Brakes now cast light onto environment when headlights are off
+- Fixed crash when splat materials are used but no splatsrc object exists
+- Added axes input HUD
+- Moved timing window to the upper left corner
+- Particles!
+  - Grass now emits particles
+  - Particles are affected by light and receive shadows
+- Graphical wheel movement height is now clamped so it doesn't penetrate fenders. Can be set with `wheelMaxHeight` in config
+- No timing and countdown happens on free roam tracks (where checkpoints are not found)
+- Tracks can now embed starting positions in gltf/glb files with a dummy object containing `strt` in their name. Start position can still be overriden in config if `overrideStartPosition = 1` is set
+- Improved surfaces, added more parameters: (hardcorded for now)
+  - `friction` - applies braking force to the wheels
+  - `tireCMult` - changes Pacejka Parameter C
+  - `steerMult` - multiplies steering forces
+- Added surfaces: gravel, snow, ice, deep_snow (not used in game yet)
