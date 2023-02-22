@@ -133,7 +133,7 @@ See [Modding](modding.md) for preliminary modding tips.
 - Particles!
   - Grass now emits particles
   - Particles are affected by light and receive shadows
-- Graphical wheel movement height is now clamped so it doesn't penetrate fenders. Can be set with `wheelMaxHeight` in config
+- Graphical wheel movement height is now clamped so it doesn't penetrate fenders. Can be set with `wheelMaxHeight` in config. Can be debugged and live edited in dev GUI (~) and visible in gizmos, toggle on F12 (as thin yellow line)
 - No timing and countdown happens on free roam tracks (where checkpoints are not found)
 - Tracks can now embed starting positions in gltf/glb files with a dummy object containing `strt` in their name. Start position can still be overriden in config if `overrideStartPosition = 1` is set
 - Improved surfaces, added more parameters: (hardcorded for now)
@@ -141,3 +141,13 @@ See [Modding](modding.md) for preliminary modding tips.
   - `tireCMult` - changes Pacejka Parameter C
   - `steerMult` - multiplies steering forces
 - Added surfaces: gravel, snow, ice, deep_snow (not used in game yet)
+
+#### Build 1679 (version 13)
+- Fixed a memory leak caused by the new input GUI
+- Added to config:
+  - `maximized` - maximizes window on start
+  - `fov` - field of view
+  - Gear ratios (`gearRatios` and `gearFinalRatio`)
+  - `torque_table` now in one line
+  - `lightsIntensity` and positions of lights (`frontLightsPosition` and `rearLightsPosition`)
+- Debug menu bar in dev GUI (~) for quicker saving of parameters
