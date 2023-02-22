@@ -145,9 +145,10 @@ See [Modding](modding.md) for preliminary modding tips.
 #### Build 1679 (version 13)
 - Fixed a memory leak caused by the new input GUI
 - Added to config:
+  - Gear ratios are now finally exposed! (`gearRatios` and `gearFinalRatio`)
   - `maximized` - maximizes window on start
   - `fov` - field of view
-  - Gear ratios (`gearRatios` and `gearFinalRatio`)
   - `torque_table` now in one line
   - `lightsIntensity` and positions of lights (`frontLightsPosition` and `rearLightsPosition`)
 - Debug menu bar in dev GUI (~) for quicker saving of parameters
+- Dev GUI windows can now be toggled individually
