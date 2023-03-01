@@ -152,3 +152,14 @@ See [Modding](modding.md) for preliminary modding tips.
   - `lightsIntensity` and positions of lights (`frontLightsPosition` and `rearLightsPosition`)
 - Debug menu bar in dev GUI (~) for quicker saving of parameters
 - Dev GUI windows can now be toggled individually
+
+#### Build 1786 (version 14)
+- Fixed major issue with collision response that caused the car to jump on polygon edges
+  - ^ Except for the wooden guardrail in Monty, the car will still stick into that one
+- Increased collision friction again to reduce wallriding exploit, since previously mentioned collision issue was fixed
+- Added message queue. It only shows info about camera switching and switching between gears for now
+- Split timings now show only temporarily after passing through checkpoints
+- Config now supports `#` as comment delimiter. Note that end of line comments are not supported (and never were).
+- Reorganized config `[car]` section to be easier to read
+- Automatic gearbox no longer gets stuck in high gear when braking to a stop
+- Added credits.txt
