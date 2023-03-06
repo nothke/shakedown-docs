@@ -65,7 +65,7 @@ There are some special tags you can put in your object names (they are case sens
 - `colbox` will create a box collider with the size of the object's bounding box
 - `nocol` or `tree` will not make a collider
 - objects starting with `chk_` and ending in `.001`, `.002`, `.003` etc. are checkpoints (splits). They must be in order with no interruptions. They will use a box collider (as if they had a `colbox` tag), so to be valid they should not be 0-thin in either dimension. The finish line is the last checkpoint.
-- `mvbl` (or starting with `stage_sign`) will make the object into a "moveable" (rigid bodies the player can topple). Right now only box collider is supported, and will be automatically added wether you have a `colbox` tag or not.
+- `mvbl` (or starting with `stage_sign`) will make the object into a "moveable" (rigid bodies the player can topple). Right now only a bounding box collider is supported, and will be automatically added no matter if you have a `colbox` tag or not
   - `m=NUMBER` can be added to the same object, where `NUMBER` is weight in kg. For example `bollard_mvbl_m=100` will make a 100 kg bollard. Note that number ends with a first non-number character, which also 
 
 If none of these tags are found, an object will be static and will have a mesh collider.
