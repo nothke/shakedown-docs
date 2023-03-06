@@ -1,4 +1,4 @@
-Correct as of build 1276
+Correct as of build 1951
 
 # Shakedown Modding
 
@@ -65,8 +65,14 @@ There are some special tags you can put in your object names (they are case sens
 - `colbox` will create a box collider with the size of the object's bounding box
 - `nocol` or `tree` will not make a collider
 - objects starting with `chk_` and ending in `.001`, `.002`, `.003` etc. are checkpoints (splits). They must be in order with no interruptions. They will use a box collider (as if they had a `colbox` tag), so to be valid they should not be 0-thin in either dimension. The finish line is the last checkpoint.
+- `mvbl` (or starting with `stage_sign`) will make the object into a "moveable" (rigid bodies the player can topple). Right now only box collider is supported, and will be automatically added wether you have a `colbox` tag or not.
+  - `m=NUMBER` can be added to the same object, where `NUMBER` is weight in kg. For example `bollard_mvbl_m=100` will make a 100 kg bollard. Note that number ends with a first non-number character, which also 
 
 If none of these tags are found, an object will be static and will have a mesh collider.
+
+There is a few material tags as well:
+- `colproxy` material will be collision only but will not render. This is useful when for example you have an object made with geometry nodes in blender and you want it to have a collider that is different than the graphical object.
+- `nocol` or `tree`, same as object tags ^
 
 #### Special objects
 - `suncube` is used for pointing the sun towards its -Z axis (opposite from blue arrow blender gizmo) that car uses for shadowing itself. If none is found, the game will point the sun top-down.
