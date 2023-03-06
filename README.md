@@ -157,9 +157,23 @@ See [Modding](modding.md) for preliminary modding tips.
 - Fixed major issue with collision response that caused the car to jump on polygon edges
   - ^ Except for the wooden guardrail in Monty, the car will still stick into that one
 - Increased collision friction again to reduce wallriding exploit, since previously mentioned collision issue was fixed
-- Added message queue. It only shows info about camera switching and switching between gears for now
+- Added message queue. It only shows info about camera switching and switching between auto shifting modes for now
 - Split timings now show only temporarily after passing through checkpoints
 - Config now supports `#` as comment delimiter. Note that end of line comments are not supported (and never were).
 - Reorganized config `[car]` section to be easier to read
 - Automatic gearbox no longer gets stuck in high gear when braking to a stop
 - Added credits.txt
+
+#### Build 1951 (version 15)
+- Added moveable (rigid body) objects:
+  - Stage signs, stage arrows, chairs and tables are now destructible in Monty
+- Fixed reverse. No longer turns into the same direction on both left and right.
+- Slightly decreased turning when skidding on the spot
+- Key events now output to ingame message queue when `outputKeyEvents` is enabled
+- Pressing `G` or `T` no longer sends test messages.
+- Wooden guardrails in Monty now have smoother collisions and will not get the cars stuck
+- Modding: `colproxy` named material can now be set to a submesh for when a collision-only part of an object is needed
+- Shadow rays now pass through checkpoint triggers. A workaround where triggers had to be in unshadowed areas to not brighten the car is no longer needed.
+- Modding: Added `mvbl` tag for moveables (rigid bodies). For now only a mesh-bounding box collider is used. Objects containing `stage_sign` are also moveable
+  - `m=NUMBER` can be added to the same object to set the mass of a moveable object. For example `m=100` would make it weigh 100kg
+- Optimized box colliders by reusing those with the same dimensions
