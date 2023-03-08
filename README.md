@@ -177,3 +177,11 @@ See [Modding](modding.md) for preliminary modding tips.
 - Modding: Added `mvbl` tag for moveables (rigid bodies). For now only a mesh-bounding box collider is used. Objects containing `stage_sign` are also moveable
   - `m=NUMBER` can be added to the same object to set the mass of a moveable object. For example `m=100` would make it weigh 100kg
 - Optimized box colliders by reusing those with the same dimensions
+
+#### Build 1999 (version 16)
+- Engine optimizations
+- Monty:
+  - One chair was unmoveable, now it is
+  - Cars are now moveable as well
+  - Fixed holes in town and after the first tunnel
+- Renamed `monty_track` to `monty`
