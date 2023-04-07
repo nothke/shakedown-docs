@@ -185,3 +185,11 @@ See [Modding](modding.md) for preliminary modding tips.
   - Cars are now moveable as well
   - Fixed holes in town and after the first tunnel
 - Renamed `monty_track` to `monty`
+
+#### Build 2061 (version 17)
+- Game now automatically makes sure it runs on the dedicated GPU on PCs with multiple GPUs. Setting manual override in Windows settings is no longer required.
+- Automatic gearbox no longer drops into lower gears suddenly when sliding sideways. It now uses total velocity, instead of forward velocity to calculate when to switch gears.
+- Added "slew mode" as dev utility, toggled by pressing "Y". In slew mode you can fly around the map when in orbit camera mode. Hold shift and scroll to change speed. Times will be invalidated if you activate it during a timed run.
+- More engine optimizations and cleanup
+- Added GLEW failed to initialize check
+
