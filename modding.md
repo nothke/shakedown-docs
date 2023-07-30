@@ -20,25 +20,31 @@ Both are supported just fine, but:
 
 (Since build ???? in paid version):
 
-There are 2 parts of a car, the `.ini` file, which defines the parameters, and the `.gltf` model file. Cars have a unique name which you choose, for example `mycar`. In that case, the files will be `mycar.ini` and `mycar.gltf`. 
+There are 2 parts of a car, the `.car.ini` file, which defines the parameters, and the `.gltf`/`.glb` model file.
 
-For now, only one car is loaded at a time in game. Which car loads is defined in `config.ini` -> `[car]` -> `model=` parameter. To load different cars you need to change this parameter to corresponding unique name and restart the game.
+#### Car Config
 
-The `.ini` file should be in the game root folder and contain all the parameters for the car. Easiest is to copy one of existing cars, like `spec17.ini`, and change the values.
+For now, only one car is loaded at a time in game. Which car loads is defined in `config.ini` -> `[car]` -> `car =` parameter. To load different cars you need to change this parameter to a certain `.car.ini` path and restart the game.
 
-The car model must be called `mycar.gltf` (glb is unsupported for cars right now). `res/cars/` folder and must have objects that end with:
+The `.car.ini` file contains all the parameters for the car. It is recommended that you put it in a unique folder in `res/cars`, such as `res/cars/yourcar/yourcar.car.ini`. You can copy one of the existing cars to get started, and just modify parameters to your liking. Alternatively, you can edit most of the parameters live in game in the dev gui (by pressing `~`), in `Shakedown` window -> `Car Parameters` segment. After you've finished changing the values, press the `File > Save Config` in the toolbar and it will be saved into your currently loaded `.car.ini`.
+
+#### Car Model
+
+The `model =` parameter in the `.car.ini` points into the path of the model file (relative to the `.car.ini`), such as `model = yourcar.gltf`.
+
+The model must contain objects whose names end on:
 * `_body` - the rendered body
-* `_wheel` - used for all wheels, a single wheel model will be copied
-* `_hull` - used for convex mesh collider
+* `_wheel` - used for all wheels, a single wheel model will be copied to all sides
+* `_hull` - used for convex mesh collider (not rendered)
 
 optionally, it can also have:
 * `_headlights` - glow as headlights
 * `_reverselights` - glow when in reverse
 * `_brakelights` - glow as brakes
 
-If you have any the game will simply pick the first one.
+If you have any multiple objects with the same ending, the game will pick the last one. Any objects that do not have those endings will simply be hidden and not used.
 
-You can also open `spec17.gltf` in blender to check out how it's set up.
+You can also open `res/spec17/spec17.gltf` in blender to check out how it's set up.
 
 All of these objects must have a single material each. Otherwise the game will just pick one submesh (mesh with one material slot) and keep the others in the middle of track.
 
