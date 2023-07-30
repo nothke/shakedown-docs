@@ -193,3 +193,28 @@ See [Modding](modding.md) for preliminary modding tips.
 - More engine optimizations and cleanup
 - Added GLEW failed to initialize check
 
+#### Build ???? (version 18)
+- Added replay system:
+  - Replay is recorded automatically every run (but can be turned off in config with `autoRecordReplay` if it causes problems on low memory/spec machines)
+  - Replay can be played back from the new in-game menu, by hitting Esc -> R
+- Added in-game menu. Esc now opens the menu and pauses the game.
+  - Restarting the run is now Esc -> Space key combo, instead of just Esc
+  - You can finally quit the game PROPERLY, through the menu (Esc -> Enter) instead of just alt+F4 (although they work in the same way).
+- Timing is now calculated in physics update, making it more correct. Previously, times were longer if physics update couldn't keep up, potentially on slower machines.
+- Game can now also be paused by pressing P, you can then change the cameras as you wish and use it as a photo mode (don't forget Tab toggles the HUD by default, so you can take some screenshots)
+- Added helicopter camera
+- Renamed Smooth Follow camera to Chase
+- Mouse now automatically hides when idle, instead of having to press ctrl to toggle
+- Config: Gravity is now part of `[enviro]` and starting position override parameters are now part of `[track]`. Previously both were in `[car]`
+- Added particle color parameters to config (temporary, until separate track splat system configuration)
+- Fixed orbit camera flipping 180 degrees
+- For modders: `wheel` material is no longer necessary as part of the car model, texture does not need to be named `spec17_body` any more (see [modding](modding.md/#car) updates)
+- This is the first version that splits paid and demo versions. The only difference between the two versions right now is that in the paid version:
+  - The car configs is now split from the main config, allowing for easy car modding. Now you can load different cars with different parameters by switching the `car =` parameter in main config. See [modding](modding.md/#car) changes (in demo version the config is still combined and model hardcoded to `spec17`)
+  - Folder structure has changed, cars are not in `res/cars/` subfolder
+- You can now offset the orbit camera pivot for each car, by setting `orbitCamOffset=`
+- Exposed rollbar stiffness parameter in car config
+- Added smoothing and noise to freelook camera
+- Rearranged car parameters for easier modification
+- Wheel base and track are now modifiable in GUI
+- Removed legacy HPM and PLY loading from engine

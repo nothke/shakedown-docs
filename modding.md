@@ -1,4 +1,4 @@
-Correct as of build 1951
+Correct as of build 2417 in paid version
 
 # Shakedown Modding
 
@@ -18,28 +18,41 @@ Both are supported just fine, but:
 
 ## Car
 
-Right now, only one car is loaded and hardcoded to `spec17.gltf`. It's easiest to just open it in blender to see the objects within. Custom objects must retain the same names as they are loaded by name:
+(Since build ???? in paid version):
 
-* `spec17_body` - the rendered body
-* `spec17_hull` - used for convex mesh collider
-* `spec17_wheel` - used for all wheels
-* `spec17_reverselights`, `spec17_brakelights` - glow as brakes/reverse lights
+There are 2 parts of a car, the `.ini` file, which defines the parameters, and the `.gltf` model file. Cars have a unique name which you choose, for example `mycar`. In that case, the files will be `mycar.ini` and `mycar.gltf`. 
+
+For now, only one car is loaded at a time in game. Which car loads is defined in `config.ini` -> `[car]` -> `model=` parameter. To load different cars you need to change this parameter to corresponding unique name and restart the game.
+
+The `.ini` file should be in the game root folder and contain all the parameters for the car. Easiest is to copy one of existing cars, like `spec17.ini`, and change the values.
+
+The car model must be called `mycar.gltf` (glb is unsupported for cars right now). `res/cars/` folder and must have objects that end with:
+* `_body` - the rendered body
+* `_wheel` - used for all wheels, a single wheel model will be copied
+* `_hull` - used for convex mesh collider
+
+optionally, it can also have:
+* `_headlights` - glow as headlights
+* `_reverselights` - glow when in reverse
+* `_brakelights` - glow as brakes
+
+If you have any the game will simply pick the first one.
+
+You can also open `spec17.gltf` in blender to check out how it's set up.
 
 All of these objects must have a single material each. Otherwise the game will just pick one submesh (mesh with one material slot) and keep the others in the middle of track.
 
 The pivot of body object must be exactly in the center of wheelbase and track (in the middle of all wheels). This is because the game uses just a single value for wheelBase and wheelTrack. It will place wheels at 0.5 * wheelBase back for rear wheels and same for front wheels.
 
-The pivot is also the center of mass. So, the pivot height should be set to a realistic centre of mass height, and MUST be inside the convex mesh. If the pivot is outside, the car might render black as the pivot is also used for shadow raycasts and they might be hitting the body itself.
+The pivot of `mycar_body` is also the center of mass. So, the pivot height should be set to a realistic centre of mass height, and MUST be inside the convex mesh. If the pivot is outside, the car might render black as the pivot is also used for shadow raycasts and they might be hitting the body itself.
 
 Car and wheels should be oriented in blender default reference system (Y should be pointing backwards and Z upwards) and have rotation at zero. In case rotations are not zeroed out, they must be applied (Ctrl+A -> Rotation).
-
-Note that car modding will be greatly improved in future versions, and none of the above limitations might count.
 
 ## Stage
 
 Object MUST have at least one layer of vertex color, which is used for baked ambient light (shadow + GI). The vertex color is multiplied with texture. If an object does not have this layer it will be rendered black.
 
-Standard (non-splat) materials support only 1 texture per and 1 uv layer per material.
+Standard (non-splat) materials support only 1 texture and 1 uv layer per material.
 
 To summarize, valid vertex data is:
 - position - vec3 float
@@ -81,6 +94,7 @@ There is a few material tags as well:
 * LOOK AT THE CONSOLE! When the game starts, it loads the track and car files. Any import error will output both in the console and in the `log.txt` file. You can alt-tab to the console during gameplay. It's much easier to spot errors in the console because it will shine bright red. But in case of a crash check `log.txt` first (before complaining :P)
 * Prefer using box colldiers for small objects that don't need precise collision. In Monty stage those are for example chairs and tables in the town, as mesh colliders would be too dense and unnecessarily slow down the game.
 * Exporting .png images with alpha in Photoshop will by default treat alpha as transparency. To export alpha properly as a separate channel without ruining RGB channels, use the [SuperPNG extension](http://www.fnordware.com/superpng/). My personal preference for textures is png, but format itself ultimately doesn't matter if you export gltf/glb with jpeg setting on.
+* Note that gltf/glb recognizes mesh instances, if multiple objects use the same mesh, it will reuse it. It can greatly reduce the size of the track and loading times especially if there are many reused objects, like trees. Although the problem with instancing is that it will not have unique vertex color baked lighting applied. To instance objects in blender (reuse the same mesh) use alt + D when copying instead of ctrl + D
 
 ### Splat Material
 
