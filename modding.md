@@ -6,7 +6,7 @@ My goal for the game is to make modding as easy as possible, BUT it is not yet o
 
 ## Modeling
 
-The game loads gltf/glb files with embedded textures. Only gltf exporter in blender version 3.3 is supported. There seems to be an issue with newer versions of blender, the vertex colors are messed up.
+The game loads gltf/glb files with embedded textures. Only gltf exporter in blender version 3.3 is supported. ~~There seems to be an issue with newer versions of blender, the vertex colors are messed up.~~ (fixed since blender 3.4)
 
 For the object to be valid, it needs to have a material and the material needs to have a texture assigned as a color map.
 
@@ -20,7 +20,7 @@ Both are supported just fine, but:
 
 (Since build ???? in paid version):
 
-There are 2 parts of a car, the `.car.ini` file, which defines the parameters, and the `.gltf`/`.glb` model file.
+There are 2 parts of a car, the `.car.ini` config file, which defines the parameters, and the `.gltf`/`.glb` model file.
 
 #### Car Config
 
