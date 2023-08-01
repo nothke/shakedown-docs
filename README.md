@@ -221,3 +221,8 @@ See [Modding](modding.md) for preliminary modding tips.
 - Rearranged car parameters for easier modification
 - Wheel base and track are now modifiable in GUI
 - Removed legacy HPM and PLY loading from engine
+
+#### Build 2437 (version 19, demo version 2)
+- Game now starts in fullscreen again by default (broken in previous version)
+- Exposed freelook camera parameters in config
+- Mouse hiding logic is now using unscaled deltatime
