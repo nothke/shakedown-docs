@@ -226,3 +226,17 @@ See [Modding](modding.md) for preliminary modding tips.
 - Game now starts in fullscreen again by default (broken in previous version)
 - Exposed freelook camera parameters in config
 - Mouse hiding logic is now using unscaled deltatime
+
+#### Build 2465 (version 20, demo version 3)
+- Fixed bug where times would not be registered when playing a replay after finishing the stage
+- Tracks are now called "maps"
+- In paid version:
+  - maps are now also split from main config and load from `.map.ini` files and have been moved to `res/maps/` folder (similar to cars)
+  - Removed demo-only params from config
+- Added `startWithHeadlightsOn=` parameter for night maps
+- Rearranged config parameters:
+  - `[enviro]` is now `[colors]`
+  - `[scene]` and `[track]` params merged under `[map]`
+  - particle and start params now have their own segments
+- Split timings window no longer pops out when HUD is hidden
+- Changed "Loading.." screen to show Shakedown Rally
