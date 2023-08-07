@@ -243,7 +243,10 @@ See [Modding](modding.md) for preliminary modding tips.
   
 #### Build 2517 (version 20, demo version 3)
 - Finland map!
+  - Use finland.bat to run it
 - Sideways forces now use pacejka based forces instead of 2 parameter linear function. Can be configured in Plot GUI - "Side Tire". Added corresponding values to config.
 - Exposed drive and engine inertia to config
 - Introduced gravel surface (any material that has "gravel" in the name becomes gravel)
-- Note: Tarmac setup is not really compatible with Finland, and gravel setup is not with Monty, mixing them will have unexpected physics. This will be improved in future releases.
+- Known issues: 
+  - Tarmac setup is not really compatible with Finland, and gravel setup is not with Monty, mixing them will have unexpected physics. This will be improved in future releases.
+  - Intro camera in Finland is poorly placed off-world. That doesn't change the gameplay tho.
