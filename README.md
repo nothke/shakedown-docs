@@ -241,7 +241,7 @@ See [Modding](modding.md) for preliminary modding tips.
 - Split timings window no longer pops out when HUD is hidden
 - Changed "Loading.." screen to show Shakedown Rally
   
-#### Build 2517 (version 20, demo version skipped)
+#### Build 2517 (version 21, demo version skipped)
 - Finland map!
   - Use finland.bat to run it
 - Sideways forces now use pacejka based forces instead of 2 parameter linear function. Can be configured in Plot GUI - "Side Tire". Added corresponding values to config.
