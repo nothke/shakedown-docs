@@ -240,3 +240,10 @@ See [Modding](modding.md) for preliminary modding tips.
   - particle and start params now have their own segments
 - Split timings window no longer pops out when HUD is hidden
 - Changed "Loading.." screen to show Shakedown Rally
+  
+#### Build 2517 (version 20, demo version 3)
+- Finland map!
+- Sideways forces now use pacejka based forces instead of 2 parameter linear function. Can be configured in Plot GUI - "Side Tire". Added corresponding values to config.
+- Exposed drive and engine inertia to config
+- Introduced gravel surface (any material that has "gravel" in the name becomes gravel)
+- Note: Tarmac setup is not really compatible with Finland, and gravel setup is not with Monty, mixing them will have unexpected physics. This will be improved in future releases.
