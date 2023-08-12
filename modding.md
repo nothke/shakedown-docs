@@ -138,6 +138,6 @@ Using a `SPLATNAME` (custom identifier) allows you to have multiple different sp
 
 Surfaces for splat materials are blended by vertex color. All properties are linearily interpolated. Right now the surface properties are hardcorded.
 
-[^1]: Note that number ends with a first non-number character, which also includes `.` so if you put it at the end, then a blender copy will make it a `mvbl_m=100.002`, meaning the mass will be `100.002`, so prefer not putting the tag at the end of the name.
-[^2]: You can also override the starting position without changing the map in config by setting `overrideStartingPosition = 1` and providing position and rotation.
-[^3]: You should put the `strt` object a little above the track because the car is centered around its center of mass. Putting the car too high will however make it "drop" at start
+[^1]: Note that number ends with a first non-number character, which also includes `.`. So if the number is at the end of the objects name, copying the object in blender makes it a `mvbl_m=100.001`, meaning the mass will be `100.001`, so prefer not putting the tag at the end of the name.
+[^2]: You can also override the starting position without changing the map model in config by setting `overrideStartingPosition = 1` and providing position and rotation. But the override is mostly used for testing and it is recommended to use the model-embedded `strt` object instead.
+[^3]: You should put the `strt` object a little above the track because the car is centered around its center of mass. Putting the `strt` object too high will however make it "drop" at start.
