@@ -82,15 +82,15 @@ Scale of all objects that you wish to have colliders on MUST have unit scale (me
 
 Note: I use the word "surface" to mean a physical surface - how a surface influences the car and game, e.g. ice makes the car slide, tarmac is sealed and very grippy, snow is loose and emits white particles.. Not to be confused with "material" which is graphical property of a mesh, although materials do map to surfaces, but they're not the same thing.
 
-There are currently 3 default-material physical surfaces: tarmac, gravel, and dirt/grass. Any object primitives (submeshes) that have materials with `tarmac` or `road` (and are not splat) in their names will use tarmac surface, any that has `gravel` will use gravel, and everything else will use dirt/grass.
+There are currently 3 default surfaces: tarmac, gravel, and dirt/grass. Any object primitives (submeshes) that have materials with `tarmac` or `road` (and are not splat) in their names will use tarmac surface, any that has `gravel` will use gravel, and everything else will use dirt/grass.
 
 Splat materials have a separate surface system that blends between surfaces using vertex colors. See [Splat Material](#Splat-Material).
 
 #### Object and Material Tags
 
-There are some special tags you can put in your object names (they are case sensitive):
+There are some special tags you can insert into your object names to assign certain behavior to them (they are case sensitive):
 - `colbox` will create a box collider with the size of the object's bounding box
-- `nocol` or `tree` will not make a collider
+- `nocol` or `tree` will not make a collider. That is, they will be graphical only and you can drive through these objects.
 - objects starting with `chk_` and ending in `.001`, `.002`, `.003` etc. are checkpoints (splits). They must be in order with no interruptions. They will use a box collider (as if they had a `colbox` tag), so to be valid they should not be 0-thin in either dimension. The finish line is the last checkpoint.
 - `mvbl` (or starting with `stage_sign`) will make the object into a "moveable" (rigid bodies the player can topple). Right now only a bounding box collider is supported, and will be automatically added no matter if you have a `colbox` tag or not
   - `m=NUMBER` can be added to the same object, where `NUMBER` is weight in kg. For example `bollard_mvbl_m=100` will make a 100 kg bollard. (note: parsing[^1])
