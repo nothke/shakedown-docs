@@ -1,12 +1,16 @@
-Correct as of build 2417 in paid version
+Correct as of build 2517 in paid version
 
 # Shakedown Modding
 
-My goal for the game is to make modding as easy as possible, BUT it is not yet officially mod "friendly". It doesn't even have track or car picking, nor good error messages if you do something wrong. Nothing stops you from changing the car parameters or asset files right now as they're "out in the open" but as I am still changing everything I advise you to wait a bit as I will make your life easier.
+~~My goal for the game is to make modding as easy as possible, BUT it is not yet officially mod "friendly". It doesn't have in-game track or car picking, nor good error messages if you do something wrong. Nothing stops you from changing the car parameters or asset files right now as they're "out in the open" but as I am still changing everything I advise you to wait a bit as I will make your life easier.~~
+
+Car and map modding is now officially supported (in paid version only)!
+
+I am still working on the modding system and workflow, making it as easy and versatile as possible for anyone to make their own. That means that the modding system is not stable, but that shouldn't deter you from making your mods right now, because I will provide detailed modding upgrade notes for every new change as part of the [changelog](README.md#changelog).
 
 ## Modeling
 
-The game loads gltf/glb files with embedded textures. Only gltf exporter in blender version 3.3 is supported. ~~There seems to be an issue with newer versions of blender, the vertex colors are messed up.~~ (fixed since blender 3.4)
+The game loads gltf/glb files with embedded textures.
 
 For the object to be valid, it needs to have a material and the material needs to have a texture assigned as a color map.
 
@@ -18,7 +22,7 @@ Both are supported just fine, but:
 
 ## Car
 
-(Since build ???? in paid version):
+(Since build 2436 in paid version):
 
 There are 2 parts of a car, the `.car.ini` config file, which defines the parameters, and the `.gltf`/`.glb` model file.
 
@@ -54,9 +58,13 @@ The pivot of `mycar_body` is also the center of mass. So, the pivot height shoul
 
 Car and wheels should be oriented in blender default reference system (Y should be pointing backwards and Z upwards) and have rotation at zero. In case rotations are not zeroed out, they must be applied (Ctrl+A -> Rotation).
 
-## Stage
+## Map
 
-Object MUST have at least one layer of vertex color, which is used for baked ambient light (shadow + GI). The vertex color is multiplied with texture. If an object does not have this layer it will be rendered black.
+(added in Build 2517)
+
+Similar to cars, maps also consist of a `.map.ini` config and glb/gltf model files, located in `/res/maps`. Which map is loaded is defined in the `config.ini` -> `[map]` -> `map =`
+
+The objects of a map model MUST have at least one layer of vertex color, which is used for baked ambient light (shadow + GI). The vertex color is multiplied with texture. If an object does not have this layer it will be rendered black.
 
 Standard (non-splat) materials support only 1 texture and 1 uv layer per material.
 
@@ -74,24 +82,28 @@ Scale of all objects that you wish to have colliders on MUST have unit scale (me
 
 Note: I use the word "surface" to mean a physical surface - how a surface influences the car and game, e.g. ice makes the car slide, tarmac is sealed and very grippy, snow is loose and emits white particles.. Not to be confused with "material" which is graphical property of a mesh, although materials do map to surfaces, but they're not the same thing.
 
-There are currently 2 default-material physical surfaces: tarmac and dirt. Any object primitives (submeshes) that have materials with `tarmac` or `road` (and are not splat) in their names will use tarmac surface, and everything else will use dirt.
+There are currently 3 default-material physical surfaces: tarmac, gravel, and dirt/grass. Any object primitives (submeshes) that have materials with `tarmac` or `road` (and are not splat) in their names will use tarmac surface, any that has `gravel` will use gravel, and everything else will use dirt/grass.
 
 Splat materials have a separate surface system that blends between surfaces using vertex colors. See [Splat Material](#Splat-Material).
 
-#### Object tags
+#### Object and Material Tags
 
 There are some special tags you can put in your object names (they are case sensitive):
 - `colbox` will create a box collider with the size of the object's bounding box
 - `nocol` or `tree` will not make a collider
 - objects starting with `chk_` and ending in `.001`, `.002`, `.003` etc. are checkpoints (splits). They must be in order with no interruptions. They will use a box collider (as if they had a `colbox` tag), so to be valid they should not be 0-thin in either dimension. The finish line is the last checkpoint.
 - `mvbl` (or starting with `stage_sign`) will make the object into a "moveable" (rigid bodies the player can topple). Right now only a bounding box collider is supported, and will be automatically added no matter if you have a `colbox` tag or not
-  - `m=NUMBER` can be added to the same object, where `NUMBER` is weight in kg. For example `bollard_mvbl_m=100` will make a 100 kg bollard. Note that number ends with a first non-number character, which also includes `.` so if you put it at the end, then a blender copy will make it a `mvbl_m=100.002`, meaning the mass will be `100.002`, so prefer not putting the tag at the end of the name.
+  - `m=NUMBER` can be added to the same object, where `NUMBER` is weight in kg. For example `bollard_mvbl_m=100` will make a 100 kg bollard. (note: parsing[^1])
+- `strt` defines the starting location. (notes: override[^2], placement[^3])  The last `strt` object found will be used.
+- `splatsrc:` see [Splat Material](#Splat-Material).
 
 If none of these tags are found, an object will be static and will have a mesh collider.
 
 There is a few material tags as well:
 - `colproxy` material will be collision only but will not render. This is useful when for example you have an object made with geometry nodes in blender and you want it to have a collider that is different than the graphical object.
 - `nocol` or `tree`, same as object tags ^
+- `sft` makes the object's collider "soft": it will have a collider that can be partially penetrated with a weaker response spring force than normal. Used for example for soft snow cover.
+- `splat:` see [Splat Material](#Splat-Material).
 
 #### Special objects
 - `suncube` is used for pointing the sun towards its -Z axis (opposite from blue arrow blender gizmo) that car uses for shadowing itself. If none is found, the game will point the sun top-down.
@@ -109,7 +121,7 @@ A special splat shader which uses the second vertex color layer can be used for 
 ![Object with a splat material and its vertex color](media/splat_material.png)
 <sup>Object with a splat:sweden splat material and its vertex color</sup>
 
-Since Blender's gltf exporter cannot out-of-the-box export references to 4 textures in a single material, there needs to exist a proxy object that will "tell" the game which textures to use for which channel for a particular splat material. This source object needs to be named in the form of `splatsrc:SPLATNAME`, where `SPLATNAME` is the same identifier you used in the splat material.
+Since Blender's gltf exporter cannot out-of-the-box export references to 4 textures in a single material, a proxy object that will "tell" the game which textures to use for which channel for a particular splat material must exist. This source object needs to be named in the form of `splatsrc:SPLATNAME`, where `SPLATNAME` is the same identifier you used in the splat material.
 
 ![The splat source object with 4 materials for each channel](media/splat_source.png)
 <sup>The corresponding splatsrc:sweden object with 4 materials for each channel</sup>
@@ -125,3 +137,7 @@ Each of the added textures (R, G & B) provided must also have an alpha. The alph
 Using a `SPLATNAME` (custom identifier) allows you to have multiple different splat materials, for example one for the road, one for terrain.
 
 Surfaces for splat materials are blended by vertex color. All properties are linearily interpolated. Right now the surface properties are hardcorded.
+
+[^1]: Note that number ends with a first non-number character, which also includes `.` so if you put it at the end, then a blender copy will make it a `mvbl_m=100.002`, meaning the mass will be `100.002`, so prefer not putting the tag at the end of the name.
+[^2]: You can also override the starting position without changing the map in config by setting `overrideStartingPosition = 1` and providing position and rotation.
+[^3]: You should put the `strt` object a little above the track because the car is centered around its center of mass. Putting the car too high will however make it "drop" at start

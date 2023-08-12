@@ -244,7 +244,7 @@ See [Modding](modding.md) for preliminary modding tips.
 #### Build 2517 (version 21, demo version skipped)
 - Finland map!
   - Use finland.bat to run it
-- Sideways forces now use pacejka based forces instead of 2 parameter linear function. Can be configured in Plot GUI - "Side Tire". Added corresponding values to config.
+- Sideways forces now use Pacejka based function instead of 2 parameter linear function. Can be configured in Plot GUI - "Side Tire". Added corresponding values to config.
 - Exposed drive and engine inertia to config
 - Introduced gravel surface (any material that has "gravel" in the name becomes gravel)
 - Known issues: 
