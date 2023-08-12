@@ -116,6 +116,8 @@ There is a few material tags as well:
 
 ### Splat Material
 
+IMPORTANT NOTE: Since attribute exporting was added in gltf exporter of newer versions of blender (like 2.6), splat materials are broken as it can't any more export multiple layers of color by default. A fix for this is coming in the next version of the game. Use slightly older version of blender for now.
+
 A special splat shader which uses the second vertex color layer can be used for [splatting](https://en.wikipedia.org/wiki/Texture_splatting), i.e. blending between 4 different textures. Materials that use splat must contain the `splat:SPLATNAME` tag where `SPLATNAME` is your custom identifier.
 
 ![Object with a splat material and its vertex color](media/splat_material.png)
