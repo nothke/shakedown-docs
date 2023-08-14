@@ -276,18 +276,3 @@ See [Modding](modding.md)
   - Intro camera in Finland is poorly placed off-world. That doesn't change the gameplay tho.
 
 
-#### Build 2555 (version 22, demo version skipped)
-- Finland:
-  - Now has a multiple surface road material (splat). But all of them behave like the old gravel for now, it just looks prettier.
-  - Added basic treewall around the map
-  - Set new Finland intro camera position.
-- Personal best times and splits are now saved in `record.ini` file, so will persist between game starts.
-  - To reset simply remove the desired segment from `record.ini`
-- Fixed wheel rotation: wheels will no longer rotate weirdly when the car is tilted. Won a battle with quaternions.
-- Fixed steering input not showing during replay
-- Modding:
-  - Intro camera positions can now be modified per map.
-  - Splat materials now require `_SPLAT` named layer, and must be exported with Data > Mesh > Attributes option, due to blender 3.6 gltf changes
-  - Removed `tree` tag, because objects named `street` were also picking it up, making them uncollideable. Use `nocol` instead.
-
-
