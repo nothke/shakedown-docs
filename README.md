@@ -25,17 +25,29 @@ Switch through the cameras (with C by default) until the camera stops moving -> 
 - `N` - Set to neutral gear
 - `F` - Unflips the car and adds 10 seconds
 - `C` - Switch camera
-- `Esc` - Restart stage
-- `tab` - Toggle HUD
-- `Ctrl` - Toggle mouse lock
+- `Esc` - Open menu
+- `Tab` - Toggle HUD
 - `Numpad +` - Decrease FoV (zoom in)
 - `Numpad -` - Increase FoV (zoom out)
 - `Numpad 8`, `Numpad 5`, `Numpad 4`, `Numpad 6` - Move camera forward, back, left, right
-- `~` - Toggle dev GUI 
+- `mouse scroll` - Dolly camera in-out in orbit, or change movement speed in freelook camera modes
+Dev utils:
+- `~` - Toggle dev GUI
+- `Y` - Enter slew mode
+  - When in slew mode, you can use orbit camera and movement keys to fly the car around, `shift + scroll` changes speed
+- `F1` - Show suspension geometry
+- `F2` - Show surface contact info
+Only when manual replay recording is turned on:
+- `F4` - Start recording replay
+- `F5` - Stop recording replay
 
 ### Rebinding controls
 
-You can set your own controls in config.ini [bindings] segment. Keys map to numbers that you can find on [this page](https://www.glfw.org/docs/3.3/group__keys.html). For example, to map throttle, break and steering to arrows:
+You can set your own controls in config.ini [bindings] segment. Keys map to numbers that you can find on [this page](https://www.glfw.org/docs/3.3/group__keys.html). 
+
+Alternatively, you can switch on `outputKeyEvents = 1` in config.ini, then open the game and anything you press will be output on the screen, including gamepad buttons. You can then put the key number you get into the corresponding value in config and restart the game.
+
+For example, to map throttle, break and steering to arrows:
 
 ```
 steerLeft = 263
@@ -45,6 +57,18 @@ brake = 264
 ```
 
 <sup>(thx to [Henke](https://itch.io/t/2612242/psa-rebinding-controls))</sup> 
+
+#### Analog axes
+
+There are also 3 analog axes you can set for throttle, brake and steering. In `config.ini` you can set `XAxis =` to the number of the gamepad/wheel's axis.
+
+You can see which number of axis belongs to which control in-game in the dev GUI: press `~` and look at Drive window -> Inputs -> Jostick axes will be listed there. Move your controls around to see which one is which. Then add the corresponding number of axis to the `XAxis=` parameter in config and press "Load Bindings" or restart the game.
+
+If one of your controls is stuck at 50% when idle, put `XAxisNormalized = 1`, it will remap the range from 0.5-1 to 0-1. If the control is inverted then set `XAxisInvert = 1`
+
+The default axes set are those of an XboX 360 Controller.
+
+The game doesn't support force feedback yet, and multiple controllers are currently not supported.
 
 ### Modding support
 
@@ -250,3 +274,20 @@ See [Modding](modding.md) for preliminary modding tips.
 - Known issues: 
   - Tarmac setup is not really compatible with Finland, and gravel setup is not with Monty, mixing them will have unexpected physics. This will be improved in future releases.
   - Intro camera in Finland is poorly placed off-world. That doesn't change the gameplay tho.
+
+
+#### Build 2555 (version 22, demo version skipped)
+- Finland:
+  - Now has a multiple surface road material (splat). But all of them behave like the old gravel for now, it just looks prettier.
+  - Added basic treewall around the map
+  - Set new Finland intro camera position.
+- Personal best times and splits are now saved in `record.ini` file, so will persist between game starts.
+  - To reset simply remove the desired segment from `record.ini`
+- Fixed wheel rotation: wheels will no longer rotate weirdly when the car is tilted. Won a battle with quaternions.
+- Fixed steering input not showing during replay
+- Modding:
+  - Intro camera positions can now be modified per map.
+  - Splat materials now require `_SPLAT` named layer, and must be exported with Data > Mesh > Attributes option, due to blender 3.6 gltf changes
+  - Removed `tree` tag, because objects named `street` were also picking it up, making them uncollideable. Use `nocol` instead.
+
+
