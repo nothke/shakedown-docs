@@ -14,7 +14,7 @@ You need to shift down through gears (`<` by default) until you reach reverse ge
 
 #### How do I fly the camera around freely?
 
-Switch through the cameras (with C by default) until the camera stops moving -> this is actually the free look camera! Now you can hold right click to look around and move the camera around (with numpad keys by default). Sorry that it isn't that clear, I will add some in-game tooltips in the future.
+Switch through the cameras (with C by default) until you reach the "Freelook" camera. Now you can hold right click to look around and move the camera around (with numpad keys by default). Sorry that it isn't that clear, I will add some in-game tooltips in the future.
 
 ### Default controls
 
@@ -72,16 +72,16 @@ The game doesn't support force feedback yet, and multiple controllers are curren
 
 ### Modding support
 
-My goal for the game is to make modding as easy as possible, BUT it is not yet officially mod "friendly". It doesn't even have track or car picking, nor good error messages if you do something wrong. Nothing stops you from changing the car parameters or asset files right now as they're "out in the open" but as I am still changing everything I advise you to wait a bit as I will make your life easier.
+Yes.
 
-See [Modding](modding.md) for preliminary modding tips.
+See [Modding](modding.md)
 
 ### Known issues
-* Trees have no collisions
-* If you have at least one controller connected, it will override keyboard input and steering, throttle and brake on the keyboard will not work.
-* If the game stutters on laptops, make sure you play the game with your dedicated GPU as many times laptops will default to integrated GPU. You can set that in Windows "Graphics Settings"
+* Trees in Monty have no collisions
+* ~~If you have at least one controller connected, it will override keyboard input and steering, throttle and brake on the keyboard will not work.~~ No longer overrides controls, now it merges them.
+* ~~If the game stutters on laptops, make sure you play the game with your dedicated GPU as many times laptops will default to integrated GPU. You can set that in Windows "Graphics Settings"~~ Fixed in newer versions, it should always start with stronger GPUs now.
 * If the game looks blurry and you have a high-dpi screen, the OS might override the application setting. Right click on the exe -> Compatibility -> Change High DPI settings -> check "Override high DPI scaling behavior" and select Application from the drop down
-* There are some known issues with Windows 7, please submit an issue with a log file if you are using one and have problems
+* There are some known issues with Windows 7 and Windows 11, please submit an issue with a log file if you are using one and have problems
 
 ### Changelog
 #### Build 849 (version 2)
