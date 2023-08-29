@@ -16,6 +16,14 @@ You need to shift down through gears (`<` by default) until you reach reverse ge
 
 Switch through the cameras (with C by default) until you reach the "Freelook" camera. Now you can hold right click to look around and move the camera around (with numpad keys by default). Sorry that it isn't that clear, I will add some in-game tooltips in the future.
 
+#### Inputs are stuck at 50%/100%
+
+If your steering, throttle or brake is stuck at 50% or 100% that means you have some unconfigured controller attached. Right now, the game takes all controllers attached and combines their inputs, and some steering wheels and joysticks use 50% for idle throttle and brake.
+
+To disable controllers and only use keyboard, either disconnect your controllers, or set `steerAxis`, `brakeAxis` or `throttleAxis` to `-1` in config.ini.
+
+If you do want to setup your controller correctly, see [this](#analog-axes)
+
 ### Default controls
 
 - `W`, `S`, `A`, `D` - Throttle, Brake and Steer
