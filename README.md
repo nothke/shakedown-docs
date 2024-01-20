@@ -303,7 +303,7 @@ See [Modding](modding.md)
   - Wrongly scaled checkpoints will now be reported
 - Vacation time: See ya in 10 days!
 
-#### Build ??? (version 23, demo version 5)
+#### Build 2805 (version 23, demo version 5)
 - Replay saving and loading to a file
   - When playing back a replay use the Save and Load buttons to open a file dialog
   - Right now, you can load any replay at any track with any car, so make sure to load the correct track and car first, otherwise the car will most likely fly in the air
