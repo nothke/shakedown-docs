@@ -34,14 +34,14 @@ The `.car.ini` file contains all the parameters for the car. It is recommended t
 
 #### Car Model
 
-The `model =` parameter in the `.car.ini` points into the path of the model file (relative to the `.car.ini`), such as `model = yourcar.gltf`.
+The `model =` parameter in the `.car.ini` points into the path of the model file (relative to the `.car.ini`), such as `model = yourcar.glb`.
 
 The model must contain objects whose names end on:
 * `_body` - the rendered body
-* `_wheel` - used for all wheels, a single wheel model will be copied to all sides
 * `_hull` - used for convex mesh collider (not rendered)
+* a wheel object specified with `wheelObject=` in config (`_wheel` by default) - used for all wheels, a single wheel model will be copied to all sides
 
-optionally, it can also have:
+Optionally, it can also have:
 * `_headlights` - glow as headlights
 * `_reverselights` - glow when in reverse
 * `_brakelights` - glow as brakes
@@ -50,13 +50,30 @@ If you have any multiple objects with the same ending, the game will pick the la
 
 You can also open `res/spec17/spec17.gltf` in blender to check out how it's set up.
 
-All of these objects must have a single material each. Otherwise the game will just pick one submesh (mesh with one material slot) and keep the others in the middle of track.
+Note that the wheel object must have a single material. Otherwise only the first submesh(mesh with one material slot) will render.
 
 The pivot of body object must be exactly in the center of wheelbase and track (in the middle of all wheels). This is because the game uses just a single value for wheelBase and wheelTrack. It will place wheels at 0.5 * wheelBase back for rear wheels and same for front wheels.
 
 The pivot of `mycar_body` is also the center of mass. So, the pivot height should be set to a realistic centre of mass height, and MUST be inside the convex mesh. If the pivot is outside, the car might render black as the pivot is also used for shadow raycasts and they might be hitting the body itself.
 
 Car and wheels should be oriented in blender default reference system (Y should be pointing backwards and Z upwards) and have rotation at zero. In case rotations are not zeroed out, they must be applied (Ctrl+A -> Rotation).
+
+The collision hull must have unit scale.
+
+##### Car Audio
+
+Custom audio clips can be specified in `[car audio]` segment. Right now only one layer of engine sound is supported. Following clips can be overriden:
+* `engineClip` - used for the engine sound. `enginePitchMult` defines the pitch multiplied by engine speed
+* `transmissionClip` - used for gear whine. `enginePitchMult` defines the pitch multiplied by drivetrain speed
+* `turboClip` - turbocharger whistle
+* `gearUpshiftClip` - sound played when switching to higher gear
+* `gearDownshiftClip` - sound played when switching to lower gear
+
+##### Wheel Motion Blur
+
+You can add motion blurring ot the wheels through a single texture. It switches texture position according to the 
+* `wheelMotionBlurSteps` defines the number of steps. That means the final, up to 8 are supported
+* `wheelMotionBlurThresholds` is an array of numbers defining wheel speed threshold at which each level of blur switches to the next. Wheel speed is in radians per second.
 
 ## Map
 

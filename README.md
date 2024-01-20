@@ -84,8 +84,12 @@ Yes.
 
 See [Modding](modding.md)
 
+### Command line arguments
+* `-r` or `--resources-path "path/to/res"` - provide a custom resources folder
+* `-cfg` or `--config-path "path/to/config.ini"` - provide a custom config file
+
 ### Known issues
-* Trees in Monty have no collisions
+* ~~Trees in Monty have no collisions~~ Fixed in v23
 * ~~If you have at least one controller connected, it will override keyboard input and steering, throttle and brake on the keyboard will not work.~~ No longer overrides controls, now it merges them.
 * ~~If the game stutters on laptops, make sure you play the game with your dedicated GPU as many times laptops will default to integrated GPU. You can set that in Windows "Graphics Settings"~~ Fixed in newer versions, it should always start with stronger GPUs now.
 * If the game looks blurry and you have a high-dpi screen, the OS might override the application setting. Right click on the exe -> Compatibility -> Change High DPI settings -> check "Override high DPI scaling behavior" and select Application from the drop down
@@ -298,3 +302,25 @@ See [Modding](modding.md)
   - Splat materials now require `_SPLAT` named layer, and must be exported with Data > Mesh > Attributes option, due to blender 3.6 gltf changes
   - Wrongly scaled checkpoints will now be reported
 - Vacation time: See ya in 10 days!
+
+#### Build ??? (version 23, demo version 5)
+- Replay saving and loading to a file
+  - When playing back a replay use the Save and Load buttons to open a file dialog
+  - Right now, you can load any replay at any track with any car, so make sure to load the correct track and car first, otherwise the car will most likely fly in the air
+- Headights state is now saved into the replay
+- New tarmac, gravel and snow wheel models for Spec17
+- Wheels are now motion blurred when spinning
+- Keyboard steering now progresses linearily, which makes it more precise. Additionally, you can now set custom attack (when key is pressed) and release (when key is released) rates in config under controls section. Analog steering is unaffected.
+- Monty updates:
+  - Added barriers to outgoing roads so it's more clear where you are supposed to go.
+  - Trees are now collideable
+- Fixed issue with records which would overwrite the file every time the track has switched (#6)
+- Car name has been added to record.ini
+- Fixed audio weirdly panning when turning in onboard view
+Modding:
+  - Now you can use different wheel meshes from the same car model file. Set the `wheelObject=` to the name of the wheel model object, and it will look for an object that ends with this string. This allows having different visual wheels or tires for different setups, e.g. gravel and tarmac wheel. You can reuse the new wheels from spec17.glb if you so wish.
+  - Custom audio clips can now be used for car sounds. See  Right now there is only one engine sound (as in spec17), but planning to implement better multiple audio blending system in the future (see (see [modding](modding.md)))
+  - Cars can now have motion blurred wheels, with up to 8 blurred "steps". (see [modding](modding.md/#motion-blurred-wheels))
+  - Removed gripMult and earlyTractionMult parameters as they are no longer used
+  - sideGripMult has been introduced
+  - blender 4 is now the preferred version for exporting
