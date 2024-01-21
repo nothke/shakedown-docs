@@ -39,7 +39,7 @@ The `model =` parameter in the `.car.ini` points into the path of the model file
 The model must contain objects whose names end on:
 * `_body` - the rendered body
 * `_hull` - used for convex mesh collider (not rendered)
-* a wheel object specified with `wheelObject=` in config (`_wheel` by default) - used for all wheels, a single wheel model will be copied to all sides
+* a wheel object specified with `wheelObject=` in config (`_wheel` by default) - used for all wheels, a single wheel model will be copied to all sides (since build 2805)
 
 Optionally, it can also have:
 * `_headlights` - glow as headlights

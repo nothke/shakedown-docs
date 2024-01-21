@@ -87,6 +87,8 @@ See [Modding](modding.md)
 ### Command line arguments
 * `-r` or `--resources-path "path/to/res"` - provide a custom resources folder
 * `-cfg` or `--config-path "path/to/config.ini"` - provide a custom config file
+* `-map "path/to/mymap.map.ini"` - override starting map, relative to res
+* `-car "path/to/mycar.car.ini:` - override starting car, relative to res
 
 ### Known issues
 * ~~Trees in Monty have no collisions~~ Fixed in v23
@@ -324,3 +326,10 @@ Modding:
   - Removed gripMult and earlyTractionMult parameters as they are no longer used
   - sideGripMult has been introduced
   - blender 4 is now the preferred version for exporting
+
+#### Build 2814 (version 24, demo version 6)
+- Finland now has splat-based road visible again. This was a regression introduced in previous version.
+- Added 2 new CLI arguments, `-car` and `-map` with which you can load cars and maps bypassing the config.ini settings. Also added [Command line arguments](#command-line-arguments) section explaining each argument.
+- Cursor now won't automatically hide when in replay file dialog
+- Added "confirm overwrite" prompt to file dialog
+- Added PirxOS to thank you
