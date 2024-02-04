@@ -21,19 +21,19 @@ There is actually a solution within bullet itself to solve this problem: `btInne
 So, to help you not spend so much time digging for solutions here's how to use it:
 
 First:
-```
+```c++
 #include "BulletCollision/CollisionDispatch/btInternalEdgeUtility.h"
 ```
 
 For each (static) triangle mesh, you need to generate the internal edge info. This info will be attached to the mesh. Docs sometimes state that this info will be assigned to a "user pointer", but it actually has no relation to the `userPointer`, it will use a special info pointer.
-```
+```c++
 auto* infoMap = new btTriangleInfoMap;
 btGenerateInternalEdgeInfo(triMeshCollider, infoMap);
 ```
 
 Now to process the collisions, you need to make your own contact callback and call `btAdjustInternalEdgeContacts` within it. Here is a minimal example:
 
-```
+```c++
 bool MyContactAddedCallback(
 	btManifoldPoint& cp,
 	const btCollisionObjectWrapper* colObj0Wrap, int partId0, int index0,
@@ -46,11 +46,13 @@ bool MyContactAddedCallback(
 ```
 
 Then assign that callback to `gContactAddedCallback` (yes, it's actually a global variable!):
-```
+
+```c++
 gContactAddedCallback = MyContactAddedCallback;
 ```
+
 Now for your rigidbody, you need to enable the custom material callback flag so that gContactAddedCallback would be called:
-```
+```c++
 body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
 ```
 
