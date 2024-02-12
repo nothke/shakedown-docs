@@ -10,7 +10,7 @@ I am still working on the modding system and workflow, making it as easy and ver
 
 ## Modeling
 
-The game loads gltf/glb files with embedded textures.
+The game loads gltf/glb files with embedded textures. (since blender 4, blender can't export gltf with embedded textures)
 
 For the object to be valid, it needs to have a material and the material needs to have a texture assigned as a color map.
 
@@ -28,7 +28,7 @@ There are 2 parts of a car, the `.car.ini` config file, which defines the parame
 
 #### Car Config
 
-For now, only one car is loaded at a time in game. Which car loads is defined in `config.ini` -> `[car]` -> `car =` parameter. To load different cars you need to change this parameter to a certain `.car.ini` path and restart the game.
+For now, only one car is loaded at a time in game. Which car loads is defined in `config.ini` -> `[car]` -> `car =` parameter. To load different cars you need to change this parameter to a certain `.car.ini` path and restart the game. (since v24) Alternatively, you can pass a `-car "path/to/car.ini"` CLI command when running the game.
 
 The `.car.ini` file contains all the parameters for the car. It is recommended that you put it in a unique folder in `res/cars`, such as `res/cars/yourcar/yourcar.car.ini`. You can copy one of the existing cars to get started, and just modify parameters to your liking. Alternatively, you can edit most of the parameters live in game in the dev gui (by pressing `~`), in `Shakedown` window -> `Car Parameters` segment. After you've finished changing the values, press the `File > Save Config` in the toolbar and it will be saved into your currently loaded `.car.ini`.
 
@@ -133,12 +133,14 @@ There is a few material tags as well:
 
 ### Splat Material
 
-IMPORTANT NOTE: Since attribute exporting was added in gltf exporter of newer versions of blender (like 2.6), splat materials are broken as it can't any more export multiple layers of color by default. A fix for this is coming in the next version of the game. Use slightly older version of blender for now.
+~~IMPORTANT NOTE: Since attribute exporting was added in gltf exporter of newer versions of blender (like 2.6), splat materials are broken as it can't any more export multiple layers of color by default. A fix for this is coming in the next version of the game. Use slightly older version of blender for now.~~ Since v22, blender 4.0+ and _SPLAT vertex layer is required, read below.
 
-A special splat shader which uses the second vertex color layer can be used for [splatting](https://en.wikipedia.org/wiki/Texture_splatting), i.e. blending between 4 different textures. Materials that use splat must contain the `splat:SPLATNAME` tag where `SPLATNAME` is your custom identifier.
+A special splat shader which uses the second vertex color layer can be used for [splatting](https://en.wikipedia.org/wiki/Texture_splatting), i.e. blending between 4 different surfaces (and textures). Materials that use splat must contain the `splat:SPLATNAME` tag where `SPLATNAME` is your custom identifier.
 
 ![Object with a splat material and its vertex color](media/splat_material.png)
 <sup>Object with a splat:sweden splat material and its vertex color</sup>
+
+(since v22) The splat vertex color layer must be named "_SPLAT" and exported with the "Data > Mesh > Attributes" option in the gltf exporter.
 
 Since Blender's gltf exporter cannot out-of-the-box export references to 4 textures in a single material, a proxy object that will "tell" the game which textures to use for which channel for a particular splat material must exist. This source object needs to be named in the form of `splatsrc:SPLATNAME`, where `SPLATNAME` is the same identifier you used in the splat material.
 
@@ -151,9 +153,9 @@ The splat source object now should have up to 4 materials with textures assigned
 - `ch:g` added to green vertex color, and
 - `ch:b` added to blue vertex color.
 
-Each of the added textures (R, G & B) provided must also have an alpha. The alpha is used as a heightmap. It is VERY IMPORTANT to connect the alpha output of the texture in the shader to alpha of the BSDF, otherwise gltf won't export the alpha channel and you won't see any blending.
+Each of the added textures (R, G & B) provided must also have an alpha. The alpha is used as a mask for blending textures. It is VERY IMPORTANT to connect the alpha output of the texture in the shader to alpha of the BSDF, otherwise gltf won't export the alpha channel and you won't see any blending.
 
-Using a `SPLATNAME` (custom identifier) allows you to have multiple different splat materials, for example one for the road, one for terrain.
+~~Using a `SPLATNAME` (custom identifier) allows you to have multiple different splat materials, for example one for the road, one for terrain.~~ Right now only one splat layer is supported.
 
 Surfaces for splat materials are blended by vertex color. All properties are linearily interpolated. Right now the surface properties are hardcorded.
 
