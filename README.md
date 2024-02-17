@@ -333,3 +333,25 @@ Modding:
 - Cursor now won't automatically hide when in replay file dialog
 - Added "confirm overwrite" prompt to file dialog
 - Added PirxOS to thank you
+
+#### Build 2847 (version 25, demo version 7)
+- New map: Sweden!
+  - Launch it with `Sweden.bat`!
+  - "Soft" collisions used for the first time in Sweden for the snowbanks
+  - Collision particles appear when colliding with snow banks
+- spec17 with snow tires (existed before but wasn't used) handling has been tweaked for Sweden
+- spec17 gravel setup (used in Finland) has been tweaked, it is less floaty at slow speeds than before
+- Added `drawFrameBuffer` option to config. When set to 0 it disables pixelation and color crunching effects
+- Removed finland.ini as separate dupplicate config.ini is no longer required. Finland.bat launcher now reuses config.ini
+Modding:
+  - Exposed surface parameters to map config.
+    - Currently only works on splat materials.
+    - Surfaces can be defined and then mapped to splat channels. See [this section in modding](modding.md/#splat-material) or sweden.map.ini for example.
+  - Moved `map/gravity=` parameter to `physics/gravity` in map config
+  - Added `graphics/mipBias=` to map configs. This will override the `graphics/mipBias=` defined in the main config.
+  - Soft collisions can now be added with `sft` tag in the name of the material
+  - Exposed soft collision stiffness and damping parameters to map config
+  - Increased possible number of textures and materials from 64 to 256
+  - Added asset overcapacity errors. For example, if you attempt to add more than 256 textures the game will now error and prevent loading additional textures. Previously it silently crashed or displayed incorrect textures.
+Known issues:
+  - Warnings will show in the console for missing surface parameters, this is expected and is not a problem since they are meant to use defaults. Will hide those false positives in a future build.
