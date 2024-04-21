@@ -355,3 +355,43 @@ Modding:
   - Added asset overcapacity errors. For example, if you attempt to add more than 256 textures the game will now error and prevent loading additional textures. Previously it silently crashed or displayed incorrect textures.
 Known issues:
   - Warnings will show in the console for missing surface parameters, this is expected and is not a problem since they are meant to use defaults. Will hide those false positives in a future build.
+  
+#### Build 3004 (version 26, demo version 8)
+- Mew map: Kenya!
+  - Longest track yet, 10+km with slippery mud and dust that is hard to plough through
+  - Launch it with `Kenya.bat`!
+  - First map with multiple splat materials (one for the road and one for the grass field)
+  - Soft-collision bushes
+- Spec17 model update and new livery
+  - Added rear-view mirrors, antennas, front brake ducts, roof scoop, seats and remodeled the rear wing
+  - New livery with much better UV unwrap (non-mirrored), also includes carbon fibre parts
+  - In spec17/textures folder you can also find spec17_white.png, which is a clean body texture without the livery. You can use it to paint your own! (Put a layer on top with multiply blending). Then overwrite the spec17_body.png.
+- Navigable in game menu
+  - Navigate with arrows or WASD, confirm with space or enter
+  - Added some basic options (but they don't save to config)
+  - Still work in progress
+  - Shortcut keys no longer used
+- Gearbox manual-automatic mode no longer switchable with a key, use the menu instead
+- Many small perf and memory optimizations
+- Added optional logging for ini parsing so warnings will no longer emit for missing surface parameters
+- Added game-loading timer: you can now see exactly how many seconds takes from starting the exe to getting in-game in the console. After the game starts, alt-tab to the console and see `Started game in: Xs`
+- Fixed issue where car windows would sometimes be pitch black (shadow color wasn't being set to them)
+- Fixed issue where wheel speed would accumulate during the splash screen
+- Sweden now has different particle colors for different surfaces, not just all white
+- Log has been cleaned up a bit
+- All assets not related to cars and tracks have been moved to `res/core` to prevent duplicate loading in case cars or tracks have their own non-gltf assets.
+- Modding:
+  - Maps:
+    - Maps now support multiple splat materials
+    - Per-surface particle parameters. Can customize kick and trail particle colors and trail lifetime.
+    - Surface parameters can now be edited live in-game through the dev window
+    - Added more errors that should catch incorrect splat and surface setups
+    - Game now crashes intentionally when track model file is not found. Previously it would load and the car would just fall through the empty void.
+    - `tree` is no longer a supported object tag for removing collisions, since objects named `street` would become false positives. Now `nocol` is used exclusively.
+  - Cars:
+    - Lights materials are no longer required to be the same as body material, they can have their own materials and textures now
+    - `_windows` is no longer a special object, any object with alpha blended material will be treated as a window-like.
+    - You can now set number of gears with `gearRatiosCount=`, up to 12 ratios (reverse + neutral + 10 forward gears) are supported
+    - Error emitted if last gear ratio is 0, which is not allowed
+    - Emissive shader now has alpha test (cutout)
+  - Fog can now be quickly toggled in-game by pressing F4
