@@ -8,9 +8,9 @@ The modding system and workflow is still work in progress, the goal being to mak
 
 ## Modeling
 
-The game uses glTF as its model (scene) format of choice. The reason behind it is that it has great choice is because gltf supports 
+The game uses glTF as its model (scene) format of choice. The reason behind using it is that it not only stores vertex data (like most other formats), but also material properties, textures, and an entire object hierarchy, hence it can act as a "scene" file. it can reuse meshes when duplicating objects, and it can export custom vertex attributes.
 
-For the object to be valid, it needs to have a material and the material needs to have a texture assigned as a color map. If a material is missing a texture, it will be rendered as magenta.
+For the object to be valid in Shakedown Rally, it needs to have at least one material and the material needs to have a texture assigned as a color map. If a material is missing a texture, it will be rendered as magenta.
 
 ### glb vs gltf
 
