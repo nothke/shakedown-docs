@@ -1,10 +1,12 @@
-Correct as of build 2517 in paid version
+Correct as of build 3013
 
 # Shakedown Modding
 
 Car and map modding is officially supported (in paid version only)!
 
 The modding system and workflow is still work in progress, the goal being to make it as easy to use as possible (and errors as easy to understand as possible), to enable anyone to make their own mods. Because the game is still under construction, that means that the modding system is not stable. But that shouldn't discourage you from making your mods right now, because I will provide detailed modding upgrade notes for every new change as part of the [changelog](README.md#changelog).
+
+If you want to ask anything or join the Shakedown Rally modding community, [join the Nothke's games discord](https://discord.com/invite/R8jXeTg)
 
 ## Modeling
 
