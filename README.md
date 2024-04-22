@@ -357,7 +357,7 @@ Known issues:
   - Warnings will show in the console for missing surface parameters, this is expected and is not a problem since they are meant to use defaults. Will hide those false positives in a future build.
   
 #### Build 3004 (version 26, demo version 8)
-- Mew map: Kenya!
+- New map: Kenya!
   - Longest track yet, 10+km with slippery mud and dust that is hard to plough through
   - Launch it with `Kenya.bat`!
   - First map with multiple splat materials (one for the road and one for the grass field)
@@ -382,12 +382,13 @@ Known issues:
 - All assets not related to cars and tracks have been moved to `res/core` to prevent duplicate loading in case cars or tracks have their own non-gltf assets.
 - Modding:
   - Maps:
-    - Maps now support multiple splat materials
+    - Maps now support multiple splat material sets
     - Per-surface particle parameters. Can customize kick and trail particle colors and trail lifetime.
     - Surface parameters can now be edited live in-game through the dev window
     - Added more errors that should catch incorrect splat and surface setups
     - Game now crashes intentionally when track model file is not found. Previously it would load and the car would just fall through the empty void.
     - `tree` is no longer a supported object tag for removing collisions, since objects named `street` would become false positives. Now `nocol` is used exclusively.
+    - All materials containing `colproxy` in the name are now become collision-only objects. Previously there was only one `colproxy` material. This allows combining with other tags like `sft`.
   - Cars:
     - Lights materials are no longer required to be the same as body material, they can have their own materials and textures now
     - `_windows` is no longer a special object, any object with alpha blended material will be treated as a window-like.
@@ -395,3 +396,9 @@ Known issues:
     - Error emitted if last gear ratio is 0, which is not allowed
     - Emissive shader now has alpha test (cutout)
   - Fog can now be quickly toggled in-game by pressing F4
+
+- #### Build 3013 (version 27, demo version 9)
+- Fixed regression where missing car lights objects would crash the game without error
+- Fixed regression where wheel blur wasn't working
+- `-map` CLI arg log entry would incorrectly show the path to the car
+- Nicer CLI args log formatting
