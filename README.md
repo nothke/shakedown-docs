@@ -8,6 +8,10 @@ Join [my discord server](https://discord.com/invite/R8jXeTg) to discuss about th
 
 ### FAQ
 
+#### The game doesn't start
+
+If the game doesn't start and/or displays a "this application was unable to start correctly 0xc00007b" message, you need an x86 Microsoft Visual C++ Redistributable. You can download it directly from here: https://aka.ms/vs/17/release/vc_redist.x86.exe
+
 #### How do I reverse?
 
 You need to shift down through gears (`<` by default) until you reach reverse gear. Will add holding brake to reverse at some point.
