@@ -401,7 +401,7 @@ Known issues:
     - Emissive shader now has alpha test (cutout)
   - Fog can now be quickly toggled in-game by pressing F4
 
-- #### Build 3013 (version 27, demo version 9)
+#### Build 3013 (version 27, demo version 9)
 - Fixed regression where missing car lights objects would crash the game without error
 - Fixed regression where wheel blur wasn't working
 - `-map` CLI arg log entry would incorrectly show the path to the car
