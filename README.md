@@ -439,4 +439,5 @@ Known issues:
 - Fixed lights shader issue for some (mostly Intel integrated) GPUs
 - Split `spec17_gravel.car.ini` into `spec17_kenya` and `spec17_finland`. Finland setup needs stiffer suspension to cope with jumps, while Kenya requires softer to remain stable on small bumps
 - Added Dev GUI plot windows for speed-gear-torque and engine torque and power map
+- Sound files (wavs) are now loaded from seleceted car's folder too
 - Minor optimizations
