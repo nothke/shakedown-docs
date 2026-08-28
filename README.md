@@ -408,7 +408,7 @@ Known issues:
 - `-map` CLI arg log entry would incorrectly show the path to the car
 - Nicer CLI args log formatting
 
-#### Build 3527 (version 28, demo version skipped)
+#### Build 3538 (version 28, demo version skipped)
 - New car: Tsubasa - an early 90s group A Japanese rally car
 - Launcher (car and map selector) now bundled with the game. No more .bat files!
 - Drivetrain rewrite
