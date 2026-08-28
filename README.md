@@ -342,7 +342,8 @@ Modding:
 - spec17 with snow tires (existed before but wasn't used) handling has been tweaked for Sweden
 - spec17 gravel setup (used in Finland) has been tweaked, it is less floaty at slow speeds than before
 - Added `drawFrameBuffer` option to config. When set to 0 it disables pixelation and color crunching effects
-- Removed finland.ini as separate dupplicate config.ini is no longer required. Finland.bat launcher now reuses config.ini
+- Removed finland.ini as separate dupplicate config.ini is
+-  no longer required. Finland.bat launcher now reuses config.ini
 Modding:
   - Exposed surface parameters to map config.
     - Currently only works on splat materials.
@@ -397,8 +398,41 @@ Known issues:
     - Emissive shader now has alpha test (cutout)
   - Fog can now be quickly toggled in-game by pressing F4
 
-- #### Build 3013 (version 27, demo version 9)
+#### Build 3013 (version 27, demo version 9)
 - Fixed regression where missing car lights objects would crash the game without error
 - Fixed regression where wheel blur wasn't working
 - `-map` CLI arg log entry would incorrectly show the path to the car
 - Nicer CLI args log formatting
+
+#### Build 3527 (version 28, demo version skipped)
+- New car: Tsubasa - an early 90s group A Japanese rally car
+- Launcher (car and map selector) now bundled with the game. No more .bat files!
+- Drivetrain rewrite
+  - Now uses realistic values for engine and drivetrain inertias, speeds and torques, tire grips, clutch impulses, etc.
+  - Tire grip now depends on vertical compression
+  - Throttle-cutting RPM limiter
+  - Fixed instability issues
+  - spec17 now uses more realistic values, making it a lot more powerful in low speeds, and can now reach very high speeds
+- Added auto-reversing when stationary in 1st gear and holding brakes
+- Windows no longer disappear behind particles, particles and windows now sort correctly
+- Added dithering to postprocess. Reduces banding while adding A E S T H E T I C S
+- Overhauled chase camera, will not jitter wildly with sudden frame drops any more, but behaves sligthly differently
+- Audio overhaul:
+  - Added reverb, especially noticed in the replays when car is in the distance
+  - Added occlusion and distance low pass filter
+  - Fixed audio glitch where gear shift sounds would be heard loudly for a split second no matter how far the camera is
+  - Collision sounds now attenuate with distance
+- Car configs have completely changed, now use segments. See spec17.car.ini for details
+- Gear ratios can now be set in the dev GUI
+- Number of gears can now be limited, up to 10 forward gears are available
+- Automatic gearbox downshift and upshift values can now be set
+- Main menu options now save to the main config on change
+- Fixed issue where exiting the main menu would not reset it
+- Trail particles are now pushed away from the camera when in chase camera mode, improving visibility
+- Dust trail particles can now be toggled separate from tire-kick particles
+- Added HUD scaling to the menu
+- Each element of the HUD can now be toggled
+- Fixed lights shader issue for some (mostly Intel integrated) GPUs
+- Split `spec17_gravel.car.ini` into `spec17_kenya` and `spec17_finland`. Finland setup needs stiffer suspension to cope with jumps, while Kenya requires softer to remain stable on small bumps
+- Added Dev GUI plot windows for speed-gear-torque and engine torque and power map
+- Minor optimizations
