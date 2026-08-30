@@ -441,3 +441,28 @@ Known issues:
 - Added Dev GUI plot windows for speed-gear-torque and engine torque and power map
 - Sound files (wavs) are now loaded from seleceted car's folder too
 - Minor optimizations
+
+#### Build 3791 (version 29, demo version skipped)
+- Fixed major audio breaking issue where all audio would completely dissapear or oversaturate caused by effects introduced in the last build. Smoothed and clamped all filter parameters
+- Redesigned HUD - still basic, but at least it's better than default ImGUI
+- Center text now has background to prevent it being invisible when the sky is also white
+- Countdown is now longer in the first run, to give some headroom to first-time players
+- Volume fades in on start of run to prevent sudden high pitch doppler popping
+- Unflip added to menu
+- Onboard camera is now second when switching
+- Removed F5-7 keys previously used for replay recording since they were just confusing
+- Corrected drivetrain inertia values for spec17
+- Onboard camera is now second when switching
+- Updated ImGUI and GLFW libs to latest
+Modding:
+  - Plot window revamped, now uses much nicer looking plots, and you can edit values in-place
+  - Custom shadow blob can now be loaded from car model. As long as the model contains a texture whose name ends with `shdblob`
+  - Added missing parameters to dev GUI: wheelMass, drivetrainInertia, engineFrictionFactor
+  - Added missing parameter engineFrictionFactor to config
+  - Renamed driveInertia to drivetrainInertia
+  - Changing torque curve in parameters window now updates engine values (but there's editable plot window now too!)
+  - Clamped some values to prevent physics crashes
+  - Renamed dev GUI windows
+  - Experimental "drive layouts" system added to dev GUI, but doesn't get saved. Still WIP
+Known issues:
+  - Crash when quitting with tire plot window open, not that it's any important - you want to quit anyway..
