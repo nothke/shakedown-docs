@@ -451,6 +451,7 @@ Known issues:
 - Unflip added to menu
 - Onboard camera is now second when switching
 - Removed F5-7 keys previously used for replay recording since they were just confusing
+- Stiffened spec17 handling on tarmac, now more agile and increased damping rate to cope with bumps better
 - Corrected drivetrain inertia values for spec17
 - Onboard camera is now second when switching
 - Updated ImGUI and GLFW libs to latest
